@@ -17,11 +17,5 @@ steps:
     awsCredentials: 'AWS-S3-Connection'
     regionName: 'eu-west-2'
     bucketName: 'mytestazuredevopsbucket'
-    globExpressions: '**'
-- task: S3Upload@1
-  inputs:
-    awsCredentials: 'AWS-S3-Connection'
-    regionName: 'eu-west-2'
-    bucketName: 'mytestazuredevopsbucket'
     globExpressions: 'build*'
     targetFolder: 'testfolder'
