@@ -11,6 +11,7 @@ Parameters:
       - nonprod
       - preprod
       - prod
+    Default: nonprod
 
   VpcCIDR:
     Description: Please enter the IP range (CIDR notation) for this VPC
