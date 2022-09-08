@@ -17,6 +17,5 @@ steps:
     awsCredentials: 'AWS-S3-Connection'
     regionName: 'eu-west-2'
     bucketName: 'mytestazuredevopsbucket'
-    sourceFolder: '/'
     globExpressions: '**'
     targetFolder: 'testfolder'
