@@ -30,4 +30,4 @@ steps:
   inputs:
     awsCredentials: 'AWS-S3-Connection'
     regionName: 'eu-west-2'
-    stackName: 'vpc_stack.yml'
+    stackName: 'vpc-stack'
