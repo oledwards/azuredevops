@@ -17,7 +17,7 @@ steps:
     awsCredentials: 'AWS-S3-Connection'
     regionName: 'eu-west-2'
     bucketName: 'mytestazuredevopsbucket'
-    globExpressions: '*yml'
+    globExpressions: '*.yml'
     targetFolder: 'testfolder'
 - task: CloudFormationCreateOrUpdateStack@1
   inputs:
