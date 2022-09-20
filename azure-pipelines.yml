@@ -24,7 +24,7 @@ steps:
     scriptType: 'inline'
     inlineScript: |
       aws elbv2 describe-load-balancers --names alb-stack-LoadBalancer > alb.json
-      export ALBArn="$(cat 1.json | jq '.LoadBalancers[].DNSName')"
+      export ALBArn="$(cat alb.json | jq '.LoadBalancers[].DNSName')"
       echo "${ALBArn}"
 
 # - script: echo Hello, world!
