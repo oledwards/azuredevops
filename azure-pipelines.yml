@@ -10,24 +10,30 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-- task: S3Upload@1
+- task: AWSCLI@1
   inputs:
-    awsCredentials: 'AWS-S3-Connection'
-    regionName: 'eu-west-2'
-    bucketName: 'mytestazuredevopsbucket'
-    globExpressions: '*.yml'
-    targetFolder: 'testfolder'
-- task: CloudFormationCreateOrUpdateStack@1
-  inputs:
-    awsCredentials: 'AWS-S3-Connection'
-    regionName: 'eu-west-2'
-    stackName: 'vpc-stack'
-    templateSource: 'file'
-    templateFile: 'vpc_stack.yml'
-- task: CloudFormationDeleteStack@1
-  inputs:
-    awsCredentials: 'AWS-S3-Connection'
-    regionName: 'eu-west-2'
-    stackName: 'vpc-stack'
+    awsCredentials: 'AWS-Connection-Nonprod'
+    regionName: 'eu-central-1'
+    awsCommand: 'aws elb describe-load-balancers --load-balancer-name alb-stack-LoadBalancer'
+
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
+# - task: S3Upload@1
+#   inputs:
+#     awsCredentials: 'AWS-S3-Connection'
+#     regionName: 'eu-west-2'
+#     bucketName: 'mytestazuredevopsbucket'
+#     globExpressions: '*.yml'
+#     targetFolder: 'testfolder'
+# - task: CloudFormationCreateOrUpdateStack@1
+#   inputs:
+#     awsCredentials: 'AWS-S3-Connection'
+#     regionName: 'eu-west-2'
+#     stackName: 'vpc-stack'
+#     templateSource: 'file'
+#     templateFile: 'vpc_stack.yml'
+# - task: CloudFormationDeleteStack@1
+#   inputs:
+#     awsCredentials: 'AWS-S3-Connection'
+#     regionName: 'eu-west-2'
+#     stackName: 'vpc-stack'
