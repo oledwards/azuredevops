@@ -26,7 +26,7 @@ steps:
       aws elbv2 describe-load-balancers --names alb-stack-LoadBalancer > alb.json
       export ALBArn="$(cat alb.json | jq '.LoadBalancers[].DNSName')"
       echo "${ALBArn}"
-      aws ssm put-parameter --name "ALBDnsName" --type "String" --value "Vici" --region us-east-1
+      aws ssm put-parameter --name "ALBDNSName" --type "String" --value ${ALBArn} --region us-east-1
       
 - task: SystemsManagerSetParameter@1
   inputs:
