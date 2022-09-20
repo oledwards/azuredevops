@@ -26,6 +26,13 @@ steps:
       aws elbv2 describe-load-balancers --names alb-stack-LoadBalancer > alb.json
       export ALBArn="$(cat alb.json | jq '.LoadBalancers[].DNSName')"
       echo "${ALBArn}"
+- task: SystemsManagerSetParameter@1
+  inputs:
+    awsCredentials: 'AWS-Connection-Nonprod'
+    regionName: 'us-east-1'
+    parameterName: 'AlbDnsName'
+    parameterType: 'string'
+    parameterValue: "${ALBArn}"
 
 # - script: echo Hello, world!
 #   displayName: 'Run a one-line script'
