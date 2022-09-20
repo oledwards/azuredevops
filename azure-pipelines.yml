@@ -10,13 +10,16 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: AWSCLI@1
+- task: AWSShellScript@1
   inputs:
     awsCredentials: 'AWS-Connection-Nonprod'
     regionName: 'eu-central-1'
-    awsCommand: 'elbv2'
-    awsSubCommand: 'describe-load-balancers'
-    awsArguments: '--names alb-stack-LoadBalancer'
+    scriptType: 'inline'
+    inlineScript: |
+      aws elbv2 describe-load-balancers --names alb-stack-LoadBalancer > alb.json
+      export ALBArn="$(cat alb.json | jq '.LoadBalancers[].DNSName' --raw-output alb.json)"
+      echo "${ALBArn}"
+      aws ssm put-parameter --name "ALBDNSName" --type "String" --value ${ALBArn} --region us-east-1
 - task: AWSShellScript@1
   inputs:
     awsCredentials: 'AWS-Connection-Nonprod'
