@@ -23,9 +23,10 @@ steps:
     regionName: 'eu-central-1'
     scriptType: 'inline'
     inlineScript: |
-      aws elbv2 describe-load-balancers --names alb-stack-LoadBalancer > /tmp/alb.json
+      alb=aws elbv2 describe-load-balancers --names alb-stack-LoadBalancer > /tmp/alb.json
+      echo "${alb}"
       export ALBArn="$(jq ['LoadBalancers'][0]['DNSName'] --raw-output alb.json)"
-      echo "${ACLArn}"
+      echo "${ALBArn}"
 
 # - script: echo Hello, world!
 #   displayName: 'Run a one-line script'
