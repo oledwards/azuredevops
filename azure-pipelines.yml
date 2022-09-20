@@ -17,6 +17,15 @@ steps:
     awsCommand: 'elbv2'
     awsSubCommand: 'describe-load-balancers'
     awsArguments: '--names alb-stack-LoadBalancer'
+- task: AWSShellScript@1
+  inputs:
+    awsCredentials: 'AWS-Connection-Nonprod'
+    regionName: 'eu-central-1'
+    scriptType: 'inline'
+    inlineScript: |
+      aws elbv2 describe-load-balancers --names alb-stack-LoadBalancer > /tmp/alb.json
+      export ALBArn="$['LoadBalancers'][0]['DNSName']"
+      echo "${ACLArn}"
 
 # - script: echo Hello, world!
 #   displayName: 'Run a one-line script'
