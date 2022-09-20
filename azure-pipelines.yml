@@ -15,7 +15,7 @@ steps:
     awsCredentials: 'AWS-Connection-Nonprod'
     regionName: 'eu-central-1'
     awsCommand: 'aws elbv2 describe-load-balancers'
-    awsSubCommand: '--names alb-stack-LoadBalancer'
+    awsArguments: '--names alb-stack-LoadBalancer'
 
 # - script: echo Hello, world!
 #   displayName: 'Run a one-line script'
